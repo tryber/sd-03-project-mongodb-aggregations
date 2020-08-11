@@ -18,4 +18,4 @@ db.movies.aggregate([
       title_split: 1
     }
   }
-]).pretty();
+]);

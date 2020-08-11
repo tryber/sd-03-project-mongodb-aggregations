@@ -26,4 +26,4 @@ db.movies.aggregate([
   { $project: { _id: 0, title: 1 } },
   { $skip: 24 },
   { $limit: 1 }
-]).pretty();
+]);

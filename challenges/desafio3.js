@@ -23,4 +23,4 @@ db.movies.aggregate([
   {
     $sort: { ano: -1, notaIMDB: 1 }
   }
-]).pretty();
+]);

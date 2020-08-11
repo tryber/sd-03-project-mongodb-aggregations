@@ -22,4 +22,4 @@ db.movies.aggregate([
       desvio_padrao: { $round: ["$desvio", 1] }
     }
   }
-]).pretty();
+]);
