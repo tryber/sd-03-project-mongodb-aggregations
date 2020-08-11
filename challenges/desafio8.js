@@ -15,7 +15,7 @@ db.air_routes.aggregate([
         {$unwind: "$airlines"},
         {
           $match: {$expr:
-           {$eq: [ "$airlines",  "$$airline_name" ]}
+          {$eq: [ "$airlines",  "$$airline_name" ]}
           }
         },
         { $project: {  _id: 0, name: 1 } }
