@@ -17,6 +17,8 @@ db.movies.aggregate([{$match: {
   }
 },
 {$sort: {
-  "ano": -1, "notaIMDB": 1
+  "ano": -1,
+  "notaIMDB": -1,
+  "titulo": 1,
   }
 }]);
