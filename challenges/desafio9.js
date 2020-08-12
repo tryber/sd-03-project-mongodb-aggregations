@@ -1,1 +1,1 @@
-db.trips.aggregate([{$match: { "birthYear": { exists: true, $ne: "" } } }, { $group: { "_id": null, "birthMax": { $max:{ $toInt: "$birthYear"} },"birthMin": { $min: { $toInt: "$birthYear" } } } }, {$project: {  "_id": 0, "maiorAnoNascimento": "$birthMax", "menorAnoNascimento": "$birthMin" } }]);
+db.trips.aggregate([{ $match: { "birthYear": { $exists: true, $ne: "" } } }, { $group: { "_id": null, "maiorAnoNascimento": { $max:{ $toInt: "$birthYear"} },"menorAnoNascimento": { $min: { $toInt: "$birthYear" } } } }, {$project: {  "_id": 0 } }]);
