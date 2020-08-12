@@ -1,36 +1,33 @@
 db.trips.aggregate([
   {
     $addFields: {
-      tempo: {
-        $abs: {
-          $subtract: ["startTime", "stopTime"],
-        },
+      time: {
+        $subtract: ["$stopTime", "$startTime"],
       },
     },
   },
   {
     $group: {
-      _id: $usertype,
-      duracaoMedia: { $avg: "tempo" },
+      _id: "$usertype",
+      media: {
+        $avg: {
+          $divide: ["$time", 1000 * 60 * 60],
+        },
+      },
     },
   },
   {
-    $projject: {
-      _id: 1,
+    $project: {
+      _id: 0,
       tipo: "$_id",
       duracaoMedia: {
-        $round: [
-          {
-            $divide: [{ $avg: "duracaoMedia" }, 3600000],
-          },
-          2,
-        ],
+        $round: ["$media", 2],
       },
     },
   },
   {
     $sort: {
-      duracaoMedia: 1
-    }
-  }
+      duracaoMedia: 1,
+    },
+  },
 ]);
