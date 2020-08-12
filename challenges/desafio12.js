@@ -1,12 +1,12 @@
 db.trips.aggregate([
   {
     $addFields: {
-      lala: {$dayOfWeek: "$startTime"}
+      lele: {$dayOfWeek: "$startTime"}
     }
   },
   {
     $match: {
-      lala:{$eq:5}
+      lele:{$eq:5}
     }
   },
   {
