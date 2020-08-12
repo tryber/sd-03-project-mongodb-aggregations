@@ -8,7 +8,10 @@ db.trips.aggregate([
   {
     $addFields: {
       "duracaoMedia": {
-        $divide: [ "$duracaoMedia", 60 * 60 * 1000 ]
+        $round: [
+          { $divide: [ "$duracaoMedia", 60 * 60 * 1000 ] },
+          2
+        ]
       }
     }
   },
@@ -21,9 +24,7 @@ db.trips.aggregate([
     $project: {
       "_id": 0,
       "tipo": "$_id",
-      "duracaoMedia": {
-        $round: [ "$duracaoMedia", 2 ]
-      }
+      "duracaoMedia": "$duracaoMedia"
     }
   }
 ]);
