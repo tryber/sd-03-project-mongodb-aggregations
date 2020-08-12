@@ -1,29 +1,20 @@
 db.trips.aggregate([
   {
-    $group: {
-      _id: { $dayOfWeek: "$startTime" },
-      totalViagens: { $sum: 1 }
-    }
+    $addFields: { day: { $dayOfWeek: "$startTime" } }
+  },
+  {
+    $match: { day: 5 }
   },
   {
     $group: {
-      _id: "$startStationName",
-      totalEstacao: { $sum: 1 }
+      _id: "$startStationName", count: { $sum: 1 }
     }
   },
+  { $sort: { count: -1 } },
+  { $limit: 1 },
   {
     $project: {
-      _id: 0,
-      diaDaSemana: "$_id",
-      total: "$totalViagens"
+      _id: 0, nomeEstacao: "$_id", total: "$count"
     }
-  },
-  {
-    $sort: {
-      total: -1,
-    }
-  },
-  {
-    $limit: 1
   }
 ]);
