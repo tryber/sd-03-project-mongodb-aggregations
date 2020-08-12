@@ -1,6 +1,6 @@
-db.movies.aggregate([
-  { $match: { "imdb.rating": { $gte: 7 } } },
-  { $match: { genres: { $not: { $in: ["Crime", "Horror"] } } } },
-  { $match: { rated: { $in: ["PG", "G"] } } },
-  { $match: { languages: { $all: ["English", "Spanish"] } } }
+db.trips.aggregate([
+  {$match: {startTime: {$gte: ISODate("2016-03-10T00:00:00.000Z"), $lt: ISODate("2016-03-11T00:00:00.000Z")}}},
+  { $addFields: { totalTime: { $divide: [{ $subtract: ["$stopTime", "$startTime"] }, 60 * 1000] } } },
+  { $group: { _id: null, media: { $avg: "$totalTime" } } },
+  { $project: { _id: 0, duracaoMediaEmMinutos: { $ceil: "$media" } } }
 ]);
