@@ -1,48 +1,31 @@
 db.trips.aggregate([
   {
-    $group: {
-      _id: { $dayOfWeek: "$startTime" },
-      total: { $sum: 1 },
+    $addFields: {
+      lele: { $dayOfWeek: "$startTime" },
     },
   },
-  { $sort: { total: -1 } },
-  { $limit: 1 },
   {
-    $lookup: {
-      from: "trips",
-      let: { diaDaSemana1: "$_id" },
-      pipeline: [
-        {
-          $match: {
-            $expr: {
-              $eq: [{ $dayOfWeek: "$startTime" }, "$$diaDaSemana1"],
-            },
-          },
-        },
-        {
-          $project: {
-            _id: 0,
-            name: "$startStationName",
-          },
-        },
-      ],
-      as: "stations",
+    $match: {
+      lele: { $eq: 5 },
     },
   },
-  { $unwind: "$stations" },
   {
     $group: {
-      _id: "$stations.name",
-      total: { $sum: 1 },
+      _id: "$startStationName",
+      cont: { $sum: 1 },
     },
   },
   {
     $project: {
       _id: 0,
       nomeEstacao: "$_id",
-      total: "$total",
+      total: "$cont",
     },
   },
-  { $sort: { total: -1 } },
+  {
+    $sort: {
+      total: -1,
+    },
+  },
   { $limit: 1 },
 ]);
