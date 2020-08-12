@@ -15,7 +15,7 @@ db.air_alliances.aggregate([
                   $eq: ["$airline.name", "$$emp_name"]
                 }
               },
-              { airplane: { $in: ['747', '380'] } }
+              { airplane: { $in: ["747", "380"] } }
             ]
           }
         }
