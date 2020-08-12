@@ -20,8 +20,9 @@ db.movies.aggregate([
   },
   {
     $sort: {
-      ano: -1,
-      votosIMDB: -1
+      "ano": -1,
+      "votosIMDB": -1,
+      "titulo": 1
     }
   }
 ]);
