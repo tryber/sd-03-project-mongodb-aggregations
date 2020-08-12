@@ -31,14 +31,16 @@ db.movies.aggregate([
   $match: {
     cast: {$in: artistas},
     "tomatoes.viewer.rating": {$gte: 3},
-    countries: { $in: ["USA"] }
+    countries: { $in: ["USA"] },
     }
+  },
+  {
+    $addFields: { num_favs: { $size: { $setIntersection: [artistas, "$cast"] } } }
   },
   {
   $project: {
       _id: 0,
       title: 1,
-      num_favs: { $size: { $setIntersection: [artistas, "$cast"] } }
     }
   },
   {
@@ -47,5 +49,7 @@ db.movies.aggregate([
       "tomatoes.viewer.rating": -1,
       title: -1
     }
-  }
+  },
+  { $skip: 25 },
+  { $limit: 1 }
 ]).pretty()
