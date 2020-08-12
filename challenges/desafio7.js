@@ -12,7 +12,7 @@ db.movies.aggregate([
     $project: {
       "_id": 1,
       "numeroFilmes": 1,
-      "media_rating": { $round: ["$media_rating"] }
+      "media_rating": { $round: ["$media_rating",1] }
     }
   },
   { $sort: { "numeroFilmes": -1, "_id": -1 } }
