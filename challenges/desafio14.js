@@ -6,11 +6,16 @@ db.trips.aggregate(
     }
   },
   {
-    $project: {
-      _id: 1,
-      "duracaoMedia": {$ceil: "$duracaoMedia"}
+    $sort: {
+      media: -1
     }
   },
-  {$sort: { "duracaoMedia": -1 }},
-  {$limit: 5}
+  {
+    $project: {
+      _id: 0,
+      bikeId: "$_id",
+      duracaoMedia: { $ceil: "$media" }
+    }
+  },
+  { $limit: 5 }
 );
