@@ -15,4 +15,3 @@ db.movies.aggregate([{ $match: { countries: "USA", "tomatoes.viewer.rating": { $
   {$skip: 24},
   {$limit: 1}
 ]);
-
