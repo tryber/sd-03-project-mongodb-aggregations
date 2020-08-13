@@ -1,5 +1,5 @@
-const dayMostTrips = Array.from(db.trips
-  .aggregate([
+const dayMostTrips = Array.from(
+  db.trips.aggregate([
     {
       $group: {
         _id: { $dayOfWeek: "$startTime" },
@@ -17,9 +17,10 @@ const dayMostTrips = Array.from(db.trips
       },
     },
     { $limit: 1 },
-  ]))[0].diaDaSemana
+  ])
+)[0].diaDaSemana;
 
-  db.trips.aggregate([
+db.trips.aggregate([
   {
     $group: {
       _id: {
