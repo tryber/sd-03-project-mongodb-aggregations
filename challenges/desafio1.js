@@ -1,11 +1,11 @@
-// Ajude a Trybe a escolher um filme para a prÛxima noite! Baseado em uma pesquisa, decidimos que os filmes em potencial devem atender aos seguintes critÈrios:
+// Ajude a Trybe a escolher um filme para a pr√≥xima noite! Baseado em uma pesquisa, decidimos que os filmes em potencial devem atender aos seguintes crit√©rios:
 
 //  imdb.rating deve ser ao menos 7;
-//  genres n„o deve conter Crime ou Horror;
+//  genres n√£o deve conter Crime ou Horror;
 //  rated deve ser igual a PG ou G;
-//  languages contÈm English e Spanish.
+//  languages cont√©m English e Spanish.
 
-// Utilizando a coleÁ„o movies, faÁa um pipeline que retorne todos esses filmes.
+// Utilizando a cole√ß√£o movies, fa√ßa um pipeline que retorne todos esses filmes.
 
 // Sua query deve retornar 41 documentos.
 
@@ -16,6 +16,6 @@ db.movies.aggregate([
       genres: { $nin: ["Crime", "Horror"] },
       rated: { $in: ["PG", "G"] },
       languages: { $all: ["English", "Spanish"] }
-      }
+    }
   }
 ]).pretty();
