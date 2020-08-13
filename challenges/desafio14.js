@@ -22,7 +22,7 @@ db.trips.aggregate([
   $project: {
     _id: 0,
     bikeId: "$_id",
-    duracaoMediaEmMinutos: {
+    duracaoMedia: {
       $ceil: { $divide: ["$avgRideTime", 60000] }
     }
   }
