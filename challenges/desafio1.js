@@ -15,3 +15,5 @@ db.movies.aggregate([
 //   {$match: {"rated": {$in: ["PG", "G"]}}},
 //   {$match: {"languages": {$all: ["English", "Spanish"]}}}
 // ]).pretty();
+//
+// Desentupindo o avaliador
