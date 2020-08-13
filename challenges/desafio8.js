@@ -9,12 +9,14 @@ db.air_routes.aggregate([
   {
     $lookup: {
       from: "air_alliances",
-      let: { arline: "$airline.name" },
+      let: { airline: "$airline.name" },
       pipeline: [
         { $unwind: "$airlines" },
         {
           $match: {
-            $eq: ["$airlines", "$$arline"],
+            $expr: {
+              $eq: ["$airlines", "$$airline"],
+            },
           },
         },
         {
