@@ -1,6 +1,5 @@
 db.movies.aggregate([
 {$match:{
-    languages:{$exists: 1},
     languages:"English"
 }},
   { $unwind: "$cast" },
