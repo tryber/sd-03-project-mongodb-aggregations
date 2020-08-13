@@ -6,35 +6,35 @@
 
 // { "_id" : "John Wayne", "numeroFilmes" : 107, "mediaIMDB" : 6.4 }
 db.movies.aggregate([
-{
-  $match: {
-    languages: { $eq: 'English'},
-    cast: { $exists: true }
+  {
+    $match: {
+      languages: { $eq: 'English'},
+      cast: { $exists: true }
+    }
+  },
+  {
+    $unwind: {
+      path: "$cast"
+    }
+  },
+  {
+    $group: {
+      _id: "$cast",
+      numeroFilmes: { $sum: 1 },
+      mediaIMDB: { $avg: "$imdb.rating"}
+    }
+  },
+  {
+    $sort: {
+    numeroFilmes: -1,
+    _id: -1
+    }
+  },
+  {
+    $project: {
+      _id: 1,
+      numeroFilmes: 1,
+      mediaIMDB: { $round: ["$mediaIMDB", 1]}
+    }
   }
-},
-{
-  $unwind: {
-    path: "$cast"
-  }
-},
-{
-  $group: {
-    _id: "$cast",
-    numeroFilmes: { $sum: 1 },
-    notas: { $avg: "$imdb.rating"}
-  }
-},
-{
-  $sort: {
-  numeroFilmes: -1,
-  _id: -1
-  }
-},
-{
-  $project: {
-    _id: 1,
-    numeroFilmes: 1,
-    mediaIMDB: { $round: ["$notas", 1]}
-  }
-}
 ]);

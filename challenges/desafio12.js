@@ -1,4 +1,4 @@
-// Agora que você já sabe o dia com mais viagens, determine qual estação tem o maior número de viagens nesse dia da semana. Mas, para isso, adicione o que for necessário ao pipeline anterior. Exiba apenas o nome da estação e o total de viagens.
+// Agora que vocÃª jÃ¡ sabe o dia com mais viagens, determine qual estaÃ§Ã£o tem o maior nÃºmero de viagens nesse dia da semana. Mas, para isso, adicione o que for necessÃ¡rio ao pipeline anterior. Exiba apenas o nome da estaÃ§Ã£o e o total de viagens.
 
 // { "nomeEstacao" : <nome_da_estacao>, "total" : <total_de_viagens> }
 
