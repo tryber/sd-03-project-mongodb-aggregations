@@ -7,7 +7,7 @@ db.movies.aggregate([
       "languages": {$all: ["English", "Spanish"]}
     }
   }
-]).pretty();
+]);
 
 // db.movies.aggregate([
 //   {$match: {"imdb.rating": {$gte: 7}}},
