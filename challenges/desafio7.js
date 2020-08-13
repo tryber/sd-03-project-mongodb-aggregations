@@ -9,14 +9,9 @@ db.movies.aggregate([
   {
     $match: {
       languages: { $eq: 'English'},
-      cast: { $exists: true }
     }
   },
-  {
-    $unwind: {
-      path: "$cast"
-    }
-  },
+  { $unwind: { path: "$cast" } },
   {
     $group: {
       _id: "$cast",
