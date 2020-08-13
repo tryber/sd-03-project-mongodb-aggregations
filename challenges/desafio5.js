@@ -1,3 +1,5 @@
+/* Gu figueiredo ajudou mt nessa, vlw gu xD */
+
 const artistas = [
   "Sandra Bullock",
   "Tom Hanks",
