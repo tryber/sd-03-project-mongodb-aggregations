@@ -52,4 +52,4 @@ db.movies.aggregate([
   },
   { $skip: 25 },
   { $limit: 1 }
-]).pretty()
+]);

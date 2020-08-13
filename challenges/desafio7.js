@@ -1,6 +1,6 @@
-// Vamos nos aprofundar um pouco mais em nossa coleção de filmes. Queremos contar quantos filmes cada um dos atores e atrizes do elenco (cast) já participou e obter uma média do campo imdb.rating para cada um desses atores e atrizes.
+// Vamos nos aprofundar um pouco mais em nossa coleÃ§Ã£o de filmes. Queremos contar quantos filmes cada um dos atores e atrizes do elenco (cast) jÃ¡ participou e obter uma mÃ©dia do campo imdb.rating para cada um desses atores e atrizes.
 
-// Traga o nome do ator ou atriz, número de filmes em que participou e a média do imdb desses filmes arredondada para uma casa decimal usando o operador $round. Considere somente os membros do elenco de filmes com o idioma inglês (English). Exiba a lista em ordem decrescente de documentos pelo número de filmes e nome do ator ou atriz.
+// Traga o nome do ator ou atriz, nÃºmero de filmes em que participou e a mÃ©dia do imdb desses filmes arredondada para uma casa decimal usando o operador $round. Considere somente os membros do elenco de filmes com o idioma inglÃªs (English). Exiba a lista em ordem decrescente de documentos pelo nÃºmero de filmes e nome do ator ou atriz.
 
 // Sua query deve retornar 47055 documentos. Cada documento no resultado deve ter o seguinte formato:
 
@@ -37,4 +37,4 @@ db.movies.aggregate([
     mediaIMDB: { $round: ["$notas", 1]}
   }
 }
-])
+]);
