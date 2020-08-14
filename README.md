@@ -151,7 +151,7 @@ O resultado da sua query deve ter o seguinte formato:
 
 ##### Desafio 3
 
-Agora que você tem os campos essenciais, retorne esses filmes ordenados por ano e nota IMDB de forma decrescente e por ordem alfabética.
+Agora que você tem os campos essenciais, retorne esses filmes ordenados por ano e nota IMDB de forma decrescente e o título por ordem alfabética (nesta ordem de desempate).
 
 O resultado da sua query deve ter o seguinte formato:
 
