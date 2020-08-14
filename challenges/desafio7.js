@@ -1,8 +1,8 @@
 db.movies.aggregate([
   {
     $match: {
-      languages: "English",
-      languages:{$exists: 1}
+      languages:{$exists: 1},
+      languages:"English"
     },
   },
   { $unwind: "$cast" },
@@ -29,7 +29,7 @@ db.movies.aggregate([
   {
     $sort: {
       numeroFilmes: -1,
-      _id: 1,
+      _id: -1,
     },
   },
 ]);
