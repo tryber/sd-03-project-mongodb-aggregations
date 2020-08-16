@@ -3,3 +3,15 @@
 // Crie um pipeline que adicione um campo title_split contendo a lista de palavras presentes em title e retorne apenas o novo campo title_split dos filmes com o título composto apenas de uma palavra, ordernando-os por title em ordem alfabética. Por exemplo, "Cinderela" e "3-25" devem entrar nessa contagem, mas "Cast Away" não.
 // Dica: utilize os operadores $split, $size e $sort para te auxiliar. Documentação do $split
 // Sua query deve retornar 8068 documentos.
+db.movies.aggregate([
+  { $addFields:
+    { title_split: { $split: [ "$title", " "] } }
+  },
+  { $match: { title_split: { $size: 1 } } },
+  { $unwind : "$title_split" },
+  { $project: { _id: 0, title_split: 1 } },
+  { $sort: { title_split: 1 } }
+]);
+
+// Para contar o número de documentos, incluí na pipeline:
+// { $group: { _id: null, "count": { $sum: 1 }}}
