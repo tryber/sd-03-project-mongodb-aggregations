@@ -12,6 +12,8 @@ db.movies.aggregate([
     genres: { $nin: [ "Crime", "Horror" ] },
     rated: { $in: [ "PG", "G" ] },
     languages: { $all: [ "English", "Spanish" ]},
-  }},
-  { $group: { _id: null, "count": { $sum: 1 }}}
+  }}
 ]);
+
+// Para contar o número de documentos, incluí na pipeline:
+// { $group: { _id: null, "count": { $sum: 1 }}},
