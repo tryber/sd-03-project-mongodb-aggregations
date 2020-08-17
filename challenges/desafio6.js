@@ -1,20 +1,22 @@
 db.movies.aggregate([
   { $match: { awards: { $regex: /Won \d+ Oscars?/i } } },
+  { $unwind: "$imdb" },
   {
     $group: {
       _id: null,
-      maior_nota: { $max: "$imdb.rating" },
-      menor_nota: { $min: "$imdb.rating" },
-      media_nota: { $avg: "$imdb.rating" },
-      desvio: { $stdDevSamp: "$imdb.rating" },
+      maior_rating: { $max: "$imdb.rating" },
+      menor_rating: { $min: "$imdb.rating" },
+      media_rating: { $avg: "$imdb.rating" },
+      desvio_padrao: { $stdDevSamp: "$imdb.rating" },
     },
   },
   {
     $addFields: {
-      media_nota: { $round: ["$media_rating", 1] },
-      desvio: { $round: ["$desvio_padrao", 1] },
+      media_rating: { $round: ["$media_rating", 1] },
+      desvio_padrao: { $round: ["$desvio_padrao", 1] },
     },
   },
+  { $project: { _id: 0 } },
 ]);
 
 // Formatado com: Prettier
