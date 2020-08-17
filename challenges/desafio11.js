@@ -1,4 +1,4 @@
- 
+
 db.trips.aggregate([
   {
     $addFields: { day: { $dayOfWeek: "$startTime" } },
