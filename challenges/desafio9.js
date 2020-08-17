@@ -4,3 +4,15 @@
 // Para este desafio utilize o operador $toInt para converter de string para valor inteiro.
 // O resultado da sua query deve ter o seguinte formato:
 // { "maiorAnoNascimento" : <ano>, "menorAnoNascimento" : <ano> }
+db.trips.aggregate([
+  { $match: {
+    birthYear: { $exists: true },
+    birthYear: { $ne: "" }
+  } },
+  { $group: {
+    _id: null,
+    maiorAnoNascimento: { $max: { $toInt: "$birthYear" } },
+    menorAnoNascimento: { $min: { $toInt: "$birthYear" } }
+  }},
+  { $project: { _id: 0 }}
+], {allowDiskUse: true});
