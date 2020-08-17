@@ -30,7 +30,7 @@ db.movies.aggregate([
  * https://docs.mongodb.com/manual/reference/operator/aggregation/project/
  */
 
-/* Esplicando o código.
+/* Explicando o código.
  * seleciono todos os filmes da database "Aggregate".
  * faço uma comparação com o imdb rating se ele é maior ou igual a 7 (é preciso usar aspas duplas para acessar o que está dentro do sub objeto).
  * faço uma lista do que eu quero que não contenha certos generos.

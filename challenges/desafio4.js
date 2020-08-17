@@ -27,7 +27,7 @@ db.movies.aggregate([
  * https://docs.mongodb.com/manual/reference/operator/aggregation/sort/
  */
 
-/* Esplicando o codigo.
+/* Explicando o codigo.
  * com o project eu faço um tipo de AS do mysql passando apenas a "coluna" que quero ver com o novo apelido dela.
  * faço uma divisão na string com o sprit, bem parecido com o do javascript.
  * faço um filtro com match para passar apenas condições especificas.
