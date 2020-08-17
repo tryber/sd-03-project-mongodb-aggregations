@@ -11,3 +11,29 @@
 // Dica: coloque a lista de atores e atrizes favoritos em uma variável e explore operadores como $size e $setIntersection.
 // O resultado da sua query deve ter o seguinte formato:
 // { "title" : <nome_do_filme> }
+db.movies.aggregate([
+  { $match: {
+    countries: "USA",
+    "tomatoes.viewer.rating": { $gte: 3 }
+  } },
+  { $addFields: {
+    favAct: { $setIntersection: [ "$cast", [ "Sandra Bullock", "Tom Hanks", "Julia Roberts", "Kevin Spacey", "George Clooney" ] ] }
+  }},
+  { $match: {
+    favAct: {
+      $in: [ "Sandra Bullock", "Tom Hanks", "Julia Roberts", "Kevin Spacey", "George Clooney" ]}}},
+  { $addFields: {
+    num_favs: { $size: "$favAct" }
+  }},
+  { $sort: { num_favs: -1, "tomatoes.viewer.rating": -1, title: -1 }},
+  { $limit: 25 },
+  { $sort: { num_favs: 1, "tomatoes.viewer.rating": 1, title: 1 }},
+  { $limit: 1 },
+  { $project: {
+    _id: 0,
+    title: 1
+  }},
+]);
+
+// Had the idea of using sort and limit to get the 25th title by:
+// https://stackoverflow.com/questions/4421207/how-to-get-the-last-n-records-in-mongodb
