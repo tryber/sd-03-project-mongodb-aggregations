@@ -1,10 +1,7 @@
-db.air_alliances.aggregate([
-    { $unwind: "$airlines" },
-    {$lookup: {from: "air_routes",let: { route: "$airlines" },
-        pipeline: [{$match: {"airplane": { $in: ["747", "380"] },$expr: { $eq: ["$airline.name", "$$route"] }
-            }},
-          {$project: { _id: 0, route: "$$route" }}
-        ],as: "routes"}},{
-      $group: {_id: "$name",totalRotas: { $sum: { $size: "$routes" } }
-      }},{ $sort: { totalRotas: -1 } },{ $limit: 1 }
-  ]);
+db.trips.aggregate([
+    {$match: {"birthYear": { $nin: [ "" ], $exists: true }}
+    },
+    {$group: {"_id": null,"maiorAnoNascimento": { $max: { $toInt: "$birthYear" } },
+        "menorAnoNascimento": { $min: { $toInt: "$birthYear" }  }}
+    },
+    {$project: {"_id": 0}}]);
