@@ -1,3 +1,8 @@
+/*
+  codigo da data que se refere aos arquivos 10 e 13 tambem
+  https://stackoverflow.com/questions/48369419/how-to-subtract-two-date-time-in-mongodb
+*/
+
 db.trips.aggregate([
   {$project: {
     "_id": null,
