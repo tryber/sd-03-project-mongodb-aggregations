@@ -7,4 +7,4 @@ db.air_alliances.aggregate([
 
 ],as: "filed"}},{$addFields:{count:{$size:"$filed"}}},{$group:{_id:"$name","totalRotas":{$sum:"$count"}}},{$sort:{totalRotas:-1}},{$limit:1}    
 
-])
+]);

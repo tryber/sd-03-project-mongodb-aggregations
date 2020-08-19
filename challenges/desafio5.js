@@ -5,4 +5,4 @@ db.movies.aggregate([
   {$skip:24},
   {$limit:1},
   {$project:{title:1,_id:0}}
-])
+]);

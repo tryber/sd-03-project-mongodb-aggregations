@@ -14,4 +14,4 @@ db.trips.aggregate([
   {$project:{total:"$trip.total",nomeEstacao:"$trip.nomeEstacao"}}
 
   
-])
+]);

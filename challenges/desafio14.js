@@ -5,4 +5,4 @@ db.trips.aggregate([
   {$project:{_id:0,bikeid:"$_id","duracaoMedia":{$ceil:"$duration"}}},
   {$limit:5}
 
-])
+]);

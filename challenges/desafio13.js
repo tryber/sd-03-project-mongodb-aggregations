@@ -4,4 +4,4 @@ db.trips.aggregate([
   {$group:{_id:null,"duracaoMediaEmMinutos":{$avg:"$duration"}}},
   {$project:{_id:0,"duracaoMediaEmMinutos":{$ceil:"$duracaoMediaEmMinutos"}}}
 
-])
+]);
