@@ -18,5 +18,5 @@ db.trips.aggregate([
     },
   },
   { $project: { trip: { $arrayElemAt: ["$trip", 0] } } },
-  { $project: { total: "$trip.total", nomeEstacao: "$trip.nomeEstacao" } },
+  { $project: { nomeEstacao: "$trip.nomeEstacao", total: "$trip.total" } },
 ]);
