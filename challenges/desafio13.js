@@ -3,7 +3,8 @@ db.trips.aggregate([
     $addFields: {
       date: {
         $dateToParts: { date: "$startTime" }
-      }
+      },
+      timeDifference: { $subtract: ["$stopTime", "$startTime"] }
     }
   },
   {
@@ -18,7 +19,7 @@ db.trips.aggregate([
       _id: "$date.year",
       duracaoMediaEmMinutos: {
         $avg: {
-          $divide: [{ $subtract: ["$stopTime", "$startTime"] }, 1000 * 60]
+          $divide: ["$timeDifference", 1000 * 60]
         }
       }
     }
