@@ -1,13 +1,5 @@
 db.trips.aggregate([
   {
-    $project: {
-      teste: { $dayOfWeek: "$startTime"}
-    }
-  }
-])
-
-db.trips.aggregate([
-  {
     $group: {
       _id: { $dayOfWeek: "$startTime"},
       total: { $sum: 1}
