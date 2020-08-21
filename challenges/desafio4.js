@@ -1,13 +1,12 @@
 db.movies.aggregate([
     {
         $addFields: {
-            title_split: {$split: ["$title"," "]},
-            equaler: {$eq: [{$size: "$title_split"},1]}
+            "title_split": {$split: ["$title"," "]},
         }
     },
     {
         $match: {
-            "equaler": true
+            "title_split": {$size: 1}
         }
     },
     {
