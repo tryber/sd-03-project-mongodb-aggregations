@@ -8,7 +8,7 @@ db.air_alliances.aggregate([
     }},
   {$unwind: "$rotas"},
   {$match: {
-    "voos.airplane": {$in: [ "747", "380" ]}
+    "rotas.airplane": {$in: [ "747", "380" ]}
   }},
   {$group: {
       "_id": "$name",
