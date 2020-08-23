@@ -19,7 +19,7 @@ db.movies.aggregate([
             "maior_rating": 1,
             "menor_rating": 1,
             "media_rating": {$round: ["$gmedia_rating",1]},
-            "dessvio_padrao": {$round: ["$gdesvio_padrao",1]}
+            "desvio_padrao": {$round: ["$gdesvio_padrao",1]}
         }
     }
 ]);
