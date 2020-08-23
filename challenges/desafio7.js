@@ -11,13 +11,13 @@ db.movies.aggregate([
         $group: {
             "_id": "$cast",
             "numeroFilmes": {$sum: 1},
-            "mediaIMDB": {$round: [{$sum: {$avg: "$imdb.rating"}},1]}
+            "mediaIMDB": {$sum: {$avg: "$imdb.rating"}}
         }
     },
     {
         $project: {
             "numeroFilmes": 1,
-            "mediaIMDB": 1
+            "mediaIMDB": {$round: ["$mediaIMDB",1]}
         }
     }
 ]);

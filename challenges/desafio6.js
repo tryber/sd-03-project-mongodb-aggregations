@@ -5,12 +5,21 @@ db.movies.aggregate([
         }
     },
     {
+        $group: {
+            "_id": null,
+            "maior_rating": {$sum: {$max: "$imdb.rating"}},
+            "menor_rating": {$sum: {$min: "$imdb.rating"}},
+            "media_rating": {$sum: {$avg: "$imdb.rating"}},
+            "desvio_padrao": {$sum: {$stdDevSamp: "$imdb.rating"}},
+        }
+    },
+    {
         $project: {
-            "maior_rating": {$max: "$imdb.rating"},
-            "menor_rating": {$min: "$imdb.rating"},
-            "media_rating": {$round: [{$avg: "$imdb.rating"},1]},
-            "desvio_padrao": {$round: [{$stdDevSamp: "$imdb.rating"},1]},
-            "_id":0
+            "_id":0,
+            "maior_rating": 1,
+            "menor_rating": 1,
+            "media_rating": {$round: ["$media_rating",1]},
+            "dessvio_padrao": {$round: ["$desvio_padrao",1]}
         }
     }
 ]);
