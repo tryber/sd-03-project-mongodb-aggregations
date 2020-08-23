@@ -24,7 +24,7 @@ db.movies.aggregate([
         }
     },
     {
-        $projection: {
+        $project: {
             "title": 1,
             "_id": 0
         }
