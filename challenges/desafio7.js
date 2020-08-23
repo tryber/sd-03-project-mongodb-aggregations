@@ -5,23 +5,19 @@ db.movies.aggregate([
         }
     },
     {
-        $addFields: {"favs": ["Sandra Bullock",
-                "Tom Hanks",
-                "Julia Roberts",
-                "Kevin Spacey",
-                "George Clooney"]
-    }},
-    {
         $unwind: "$cast"
     },
     {
-        $unwind: "$favs"
+        $group: {
+            "_id": "$cast",
+            "numeroFilmes": {$sum: 1},
+            "mediaIMDB": {$round: [{$sum: {$avg: "$imdb.rating"}},1]}
+        }
     },
     {
-        $group: {
-            "_id": "$favs",
-            "numeroFilmes": {$sum: {$eq: ["$_id","$cast"]}},
-            "mediaIMDB": {$sum: {$avg: "$imdb.rating"}}
+        $project: {
+            "numeroFilmes": 1,
+            "mediaIMDB": 1
         }
     }
 ]);
