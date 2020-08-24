@@ -2,13 +2,12 @@ db.trips.aggregate([
     {
         $group: {
             "_id": "$bikeid",
-            "duration": {$avg: 
-                {$divide: [
+            "duration": {
+                $divide: [
                     {$subtract: ["$stopTime", "$startTime"]},
                     60000
-                    ]
-                }
-            }
+                ]
+            }  
         }
     },
     {
