@@ -1,7 +1,7 @@
 db.trips.aggregate([
     {
         $match: {
-            "birthYear": {$and: [{$nin: [""]},
+            "birthYear": {$and: [{$ne: ""},
                 {$exists: true}]}
         }
     },
@@ -15,8 +15,6 @@ db.trips.aggregate([
     {
         $project: {
             "_id": 0,
-            "maiorAnoNascimento": 1,
-            "menorAnoNascimento": 1
         }
     }
 ]);
