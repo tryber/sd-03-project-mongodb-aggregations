@@ -9,7 +9,7 @@ db.movies.aggregate([
     numeroFilmes: { $sum: 1 }
   } },
   { $project: {
-    mediaIMDB: { $round: [ "$imdb.rating", 1 ] },
+    mediaIMDB: { $round: [ "$mediaIMDB", 1 ] },
     numeroFilmes: 1
   } },
   { $sort: {
