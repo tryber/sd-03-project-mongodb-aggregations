@@ -1,3 +1,6 @@
+// referencia;
+// https://github.com/tryber/sd-03-project-mongodb-aggregations/blob/GGTeodoro-mongodb-aggregations/challenges/desafio9.js
+// feito no dia do projeto CLI na hora do plantão junto do gustavo caetano.
 db.trips.aggregate([
     { $match: { birthYear: { $exists: true, $ne: "" } } }, // Não considere documentos com valores vazios ("") ou em que o campo não existe!
     {
@@ -13,9 +16,3 @@ db.trips.aggregate([
             "menorAnoNascimento": 1
         }
     }]);
-
-    // referencia;
-
-    // https://github.com/tryber/sd-03-project-mongodb-aggregations/blob/GGTeodoro-mongodb-aggregations/challenges/desafio9.js
-    // feito no dia do projeto CLI na hora do plantão junto do gustavo caetano.
-    
