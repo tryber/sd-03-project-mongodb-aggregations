@@ -34,5 +34,11 @@ db.movies.aggregate([
       "title": 1,
       "_id": 0
     }
+  },
+  {
+    $skip: 24
+  },
+  {
+    $limit: 1
   }
 ]);
