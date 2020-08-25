@@ -17,5 +17,4 @@ db.air_alliances.aggregate([
     { $group: { _id: "$name", "totalRotas": { $sum: "$count" } } },
     { $sort: { totalRotas: -1 } },
     { $limit: 1 } // mostra que tem mais rotas com esses aviões.
-
 ]);

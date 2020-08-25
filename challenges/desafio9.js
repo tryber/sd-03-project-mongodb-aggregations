@@ -18,3 +18,4 @@ db.trips.aggregate([
 
     // https://github.com/tryber/sd-03-project-mongodb-aggregations/blob/GGTeodoro-mongodb-aggregations/challenges/desafio9.js
     // feito no dia do projeto CLI na hora do plantão junto do gustavo caetano.
+    
