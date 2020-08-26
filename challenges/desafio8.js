@@ -10,7 +10,7 @@ db.air_alliances.aggregate([
                     {
                         $and: [{
                             $expr:
-                                { $eq: ["$airline.name", "$$emp_name"] }
+                                { $eq: ["$airline.name", "$$airnlines"] }
                         },
                         { airplane: { $in: ["747", "380"] } }
                         ]
@@ -22,7 +22,7 @@ db.air_alliances.aggregate([
     {
         $unwid: "$parceiras"
     }, // descubra qual delas tem o maior número de rotas com esses aviões.
-    { $group: { _id: "$name", "totalRotas": { $sum: 1 } } },
+    { $group: { _id: "$name", totalRotas: { $sum: 1 } } },
     { $sort: { totalRotas: -1 } },
     { $limit: 1 } // mostra que tem mais rotas com esses aviões.
 ]);
