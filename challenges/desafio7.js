@@ -13,8 +13,8 @@ db.movies.aggregate([
     },
     {
         $project: {  // traga o nome do ator ou atriz, número de filmes em que participou e a média do imdb desses filmes arredondada para uma casa decimal usando o operador $round
-            "filmes": "$contarFilmes",
-            "mediaIMDB": { $round: ["$avgIMDB", 1] }
+            "mediaIMDB": { $round: ["$avgIMDB", 1] },
+            "filmes": 1
         }
     },
     {
