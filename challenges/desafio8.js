@@ -20,6 +20,12 @@ db.air_alliances.aggregate([
         }
     },
     {
+        $match: {
+          group_airlines: { $not: { $size: 0 } }
+        }
+      },
+    
+    {
         $unwid: "$parceiras"
     }, // descubra qual delas tem o maior número de rotas com esses aviões.
     { $group: { _id: "$name", totalRotas: { $sum: 1 } } },
@@ -27,4 +33,4 @@ db.air_alliances.aggregate([
     { $limit: 1 } // mostra que tem mais rotas com esses aviões.
 ]);
 
-// referencia: https://github.com/tryber/sd-03-project-mongodb-aggregations/blob/tales/challenges/desafio8.js (linha 7 a 18)
+// referencia: https://github.com/tryber/sd-03-project-mongodb-aggregations/blob/tales/challenges/desafio8.js (linha 7 e 23)
