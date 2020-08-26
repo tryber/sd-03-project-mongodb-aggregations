@@ -12,7 +12,7 @@ db.air_alliances.aggregate([
     },
     {
         $addFields:
-            { count: { $size: "$filed" } }
+            { count: { $size: "parceiras" } }
     }, // descubra qual delas tem o maior número de rotas com esses aviões.
     { $group: { _id: "$name", "totalRotas": { $sum: "$count" } } },
     { $sort: { totalRotas: -1 } },

@@ -1,7 +1,7 @@
 db.movies.aggregate([
     {
         $match:  // Considere somente os membros do elenco de filmes com o idioma inglês (English).
-            { "languages": { $all: ["English"] } }
+            { "languages": "English" }
     },
     { $unwind: "$cast" }, // não vai produzir um documento se o valor for nulo
     {
