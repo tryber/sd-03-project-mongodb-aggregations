@@ -1,4 +1,4 @@
-db.air_routes.aggregate([
+db.air_alliances.aggregate([
   { $match: {
     $or: [{ airplane: "747"}, {airplane: "380"}],
     },
