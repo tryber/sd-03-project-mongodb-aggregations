@@ -1,10 +1,20 @@
-// A partir da coleção `trips`, determine o menor e o maior ano de nascimento. Guarde essa informação, você precisará dela mais tarde.
-
-// Não considere documentos com valores vazios (`""`) ou em que o campo não existe!
-
-// Para este desafio utilize o operador [`$toInt`](https://docs.mongodb.com/manual/reference/operator/aggregation/toInt/index.html) para converter de string para valor inteiro.
-
-// O resultado da sua query deve ter o seguinte formato:
-
-// ```javascript
-// { "maiorAnoNascimento" : <ano>, "menorAnoNascimento" : <ano> }
+db.trips.aggregate([
+  {
+    $match: { birthYear: { $exists: 1, $ne: ""} }
+  },
+  {
+    $unwind: "$cast"
+  },
+  {
+    $group: { 
+      _id: null,
+      maiorAnoNascimento: { $min: { $toInt: "$birthYear" } },
+      menorAnoNascimento: { $min: { $toInt: "$birthYear" } },
+    }
+  },
+  { $project: {
+    _id: 0,
+    maiorAnoNascimento: 1,
+    menorAnoNascimento: 1
+  } },
+]);
