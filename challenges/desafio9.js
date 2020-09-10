@@ -3,9 +3,6 @@ db.trips.aggregate([
     $match: { birthYear: { $exists: 1, $ne: ""} }
   },
   {
-    $unwind: "$cast"
-  },
-  {
     $group: { 
       _id: null,
       maiorAnoNascimento: { $max: { $toInt: "$birthYear" } },
